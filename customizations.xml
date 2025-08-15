@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WindowsCustomizations>
+  <PackageConfig xmlns="urn:schemas-Microsoft-com:Windows-ICD-Package-Config.v1.0">
+    <ID>{8ffcf02b-eb1d-44ec-92c0-fbce85d63516}</ID>
+    <Name>Project_4</Name>
+    <Version>1.44</Version>
+    <OwnerType>ITAdmin</OwnerType>
+    <Rank>0</Rank>
+    <Notes></Notes>
+  </PackageConfig>
+  <Settings xmlns="urn:schemas-microsoft-com:windows-provisioning">
+    <Customizations>
+      <Common>
+        <ProvisioningCommands>
+          <DeviceContext>
+            <CommandLine>C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -Command "Get-PSDrive -PSProvider FileSystem | ForEach-Object { $script = Join-Path $_.Root 'provision.ps1'; if (Test-Path $script) { &amp;amp; $script; exit } }"</CommandLine>
+          </DeviceContext>
+        </ProvisioningCommands>
+      </Common>
+    </Customizations>
+  </Settings>
+</WindowsCustomizations>

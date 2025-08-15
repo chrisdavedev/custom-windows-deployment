@@ -1,0 +1,3 @@
+echo Hello from cmd.cmd....
+
+pause

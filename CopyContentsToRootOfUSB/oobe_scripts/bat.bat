@@ -1,0 +1,3 @@
+echo Hello from bat.bat....
+
+pause

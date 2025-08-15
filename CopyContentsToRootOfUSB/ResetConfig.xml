@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ResetConfig.xml -->
+<Reset>
+  <Run Phase="BasicReset_AfterImageApply">
+    <Path>runcustomizations.cmd</Path>
+    <Duration>1</Duration>
+  </Run>
+  <Run Phase="FactoryReset_AfterImageApply">
+    <Path>runcustomizations.cmd</Path>
+    <Duration>1</Duration>
+  </Run>
+  <!-- May be combined with Recovery Media Creator
+       configurations – insert SystemDisk element here -->
+</Reset>
