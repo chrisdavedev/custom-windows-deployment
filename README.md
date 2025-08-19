@@ -46,7 +46,7 @@ After running `InitializeProject.ps1`, `Provisioning.PPKG` will be created and p
 ## Initializing the Project
 * Clone the Project
 
-      git clone https://github.com/chrisdavedev/Custom-Windows-Deployment.git
+      git clone https://github.com/chrisdavedev/custom-windows-deployment.git
       cd custom-windows-deployment
 
 * Run the Initialization Script (will self elevate admin rights)
