@@ -238,6 +238,47 @@ function Create_PPKG
     icd.exe /Build-ProvisioningPackage /CustomizationXML:"$xmlPath" /PackagePath:"$ppkgFile" /StoreFile:"$datFile" +Overwrite
 }
 
+# ============================
+# Prompt the user to copy project 
+# files to a flash drive now
+# ============================
+function Copy_Files_To_USB {
+    $response = Read-Host "Would you like to copy files to USB flash drive (will overwrite existing files with same names)? (Y/N)"
+    
+    if ($response.ToLower() -eq "y") 
+	{
+        Add-Type -AssemblyName System.Windows.Forms
+        Add-Type -AssemblyName System.Drawing
+
+        $folderDialog = New-Object System.Windows.Forms.FolderBrowserDialog
+        $folderDialog.Description = "Select the destination folder on the USB flash drive"
+        $folderDialog.ShowNewFolderButton = $true
+
+        $result = $folderDialog.ShowDialog()
+
+        if ($result -eq [System.Windows.Forms.DialogResult]::OK) 
+		{
+            $destinationPath = $folderDialog.SelectedPath
+			$sourcePath = Join-Path -Path $PSScriptRoot -ChildPath 'CopyContentsToRootOfUSB'
+
+			Write-Host "Copying files to $destinationPath..." -ForegroundColor Cyan
+			
+			Copy-Item -Path "$sourcePath\*" -Destination $destinationPath -Recurse -Force
+        } 
+		else 
+		{
+            Write-Host "No destination selected. Aborting copy operation." -ForegroundColor Red
+        }
+    } 
+	else 
+	{
+        Write-Host "User chose not to copy files to USB." -ForegroundColor Red
+    }
+}
+
+# ============================
+# Instructions on the files in this project
+# ============================
 function Print_File_Instructions
 {
 	Clear-Host
@@ -284,12 +325,11 @@ function Print_File_Instructions
 	
 }
 
+
 function Print_Next_Steps
 {
 	Clear-Host
 	Write-Host "Quick Start Information:`n" -ForegroundColor Green
-	Write-Host "- The contents of the folder .\CopyContentsToRootOfUSB\ should be placed"
-	Write-Host "  at the root of a removable media with Provisioning.ppkg at the root.`n"
 	Write-Host "- This script overwrites C:\Recovery, which may cause your OEM recovery" -ForegroundColor Red
 	Write-Host "  solution to break. Please make a backup of C:\Recovery before running" -ForegroundColor Red
 	Write-Host "  this tool if reinstalling Windows from scratch is not an option for you." -ForegroundColor Red
@@ -303,6 +343,8 @@ function Print_Next_Steps
 	Write-Host "`tby going to Settings -> Update & Security -> Recovery -> Reset This PC"
 }
 
+
+
 # Main entry point
 function Main
 {
@@ -312,6 +354,7 @@ function Main
 	Install_WCD
 	Copy_WCD_DAT_File
 	Create_PPKG
+	Copy_Files_To_USB
 	Uninstall_WCD
 	
 	Write-Host "`n`nInitialization complete, press enter for further instructions...`n`n" -ForegroundColor Green
