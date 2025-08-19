@@ -1,4 +1,4 @@
-rem copyunattend.cmd
+rem runcustomizations.cmd
 
 set "LOG_DIR=C:\Recovery\OEM\logs"
 for /f "tokens=2 delims==" %%d in ('wmic os get localdatetime /value') do set "LDT=%%d"
