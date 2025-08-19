@@ -57,9 +57,9 @@ After running `InitializeProject.ps1`, `Provisioning.PPKG` will be created and p
   * Installs WCD if missing  
   * Locates/copies the required DAT file  
   * Builds the Provisioning.ppkg package to `.\CopyContentsToRootOfUSB\`
-  * INCOMING FEATURE: Prompts to copy required files to USB flash drive
+  * Prompts to copy required files to USB flash drive
 
-* Once complete, copy the contents of `.\CopyContentsToRootOfUSB\` to the root of a USB drive. 
+* Once complete, if you chose not to lets the script - copy the contents of `.\CopyContentsToRootOfUSB\` to the root of a USB drive. 
      
 
 ## Deployment Methods 
