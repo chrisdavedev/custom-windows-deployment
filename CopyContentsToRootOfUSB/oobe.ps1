@@ -1,3 +1,11 @@
+# ===========================
+#
+# By Chris Barry
+#
+# This is the main OOBE script for the custom recovery solution.
+# It gets called by Unattend.xml during the Sysprep Process.
+#
+# ===========================
 using namespace System.Security.Principal
 
 # ==========

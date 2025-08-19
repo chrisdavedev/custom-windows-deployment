@@ -1,5 +1,7 @@
 # ===========================
 #
+# By Chris Barry
+#
 # This script wipes out C:\Recovery
 # and injects the custom oobe_scripts,
 # reg, and .env files into two places:
@@ -13,6 +15,11 @@
 #		recovery solution on your PC after running this.
 #
 # ===========================
+param(
+    [Parameter(Mandatory=$false)]
+    [string]$PPkg
+)
+
 $recoveryRootFolder = "C:\Recovery"
 $logsFolder   = Join-Path $recoveryRootFolder "OEM\logs"
 
@@ -54,6 +61,8 @@ Copy-Item -Path "$currentDirectory\reg" "C:\Recovery\OEM\reg" -Recurse -Force
 
 # Tell Sysprep.exe to use the unattended.xml file on the current dir (likely removeable media)
 # This will apply the configurations to the C:\ drive via C:\Recovery\OEM\oobe.ps1
-C:\Windows\System32\Sysprep\sysprep.exe /oobe /reboot /unattend:"$currentDirectory\unattend.xml"
+if ($PSBoundParameters.ContainsKey('PPkg') -and -not [string]::IsNullOrWhiteSpace($PPkg)) {
+    C:\Windows\System32\Sysprep\sysprep.exe /oobe /reboot /unattend:"$currentDirectory\unattend.xml"
+}
 
 Stop-Transcript

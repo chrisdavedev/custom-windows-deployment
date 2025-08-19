@@ -13,7 +13,7 @@
       <Common>
         <ProvisioningCommands>
           <DeviceContext>
-            <CommandLine>C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -Command "Get-PSDrive -PSProvider FileSystem | ForEach-Object { $script = Join-Path $_.Root 'provision.ps1'; if (Test-Path $script) { &amp;amp; $script; exit } }"</CommandLine>
+            <CommandLine>C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -Command "Get-PSDrive -PSProvider FileSystem | ForEach-Object { $script = Join-Path $_.Root 'provision.ps1'; if (Test-Path $script) { &amp; $script PPkg; exit } }"</CommandLine>
           </DeviceContext>
         </ProvisioningCommands>
       </Common>
