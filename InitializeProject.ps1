@@ -251,7 +251,7 @@ function Copy_Files_To_USB {
         Add-Type -AssemblyName System.Drawing
 
         $folderDialog = New-Object System.Windows.Forms.FolderBrowserDialog
-        $folderDialog.Description = "Select the destination folder on the USB flash drive"
+        $folderDialog.Description = "Select the destination folder on the USB flash drive" -ForegroundColor Cyan
         $folderDialog.ShowNewFolderButton = $true
 
         $result = $folderDialog.ShowDialog()
