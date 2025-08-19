@@ -243,7 +243,8 @@ function Create_PPKG
 # files to a flash drive now
 # ============================
 function Copy_Files_To_USB {
-    $response = Read-Host "Would you like to copy files to USB flash drive (will overwrite existing files with same names)? (Y/N)"
+	Write-Host "Would you like to copy files to USB flash drive (will overwrite existing files with same names)? (Y/N)" -NoNewline -ForegroundColor Cyan
+    $response = Read-Host
     
     if ($response.ToLower() -eq "y") 
 	{
@@ -251,7 +252,7 @@ function Copy_Files_To_USB {
         Add-Type -AssemblyName System.Drawing
 
         $folderDialog = New-Object System.Windows.Forms.FolderBrowserDialog
-        $folderDialog.Description = "Select the destination folder on the USB flash drive" -ForegroundColor Cyan
+        $folderDialog.Description = "Select the destination folder on the USB flash drive"
         $folderDialog.ShowNewFolderButton = $true
 
         $result = $folderDialog.ShowDialog()
