@@ -9,7 +9,11 @@ This project automates the creation and use of a Windows Provisioning Package (P
 * Copies required provisioning DAT files automatically  
 * Supports unattended deployment with custom unattend.xml  
 * Executes custom user scripts, user registry keys, and environment variables from pre-defined directories during OOBE
+* Copies custom deployment files to C:\Recovery to work with the "Reset This PC" Push Button Reset feature
      
+## Documentation Used During Development
+* [Push Button Reset Microsoft Documentation](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/push-button-reset-overview?view=windows-11)
+
 
 ## Repository Layout 
 After running `InitializeProject.ps1`, `Provisioning.PPKG` will be created and placed inside `.\CopyContentsToRootOfUSB\`. 
@@ -53,9 +57,9 @@ After running `InitializeProject.ps1`, `Provisioning.PPKG` will be created and p
   * Installs WCD if missing  
   * Locates/copies the required DAT file  
   * Builds the Provisioning.ppkg package to `.\CopyContentsToRootOfUSB\`
-  * INCOMING FEATURE: Prompts to copy required files to USB flash drive
+  * Prompts to copy required files to USB flash drive
 
-* Once complete, copy the contents of `.\CopyContentsToRootOfUSB\` to the root of a USB drive. 
+* Once complete, if you chose not to lets the script - copy the contents of `.\CopyContentsToRootOfUSB\` to the root of a USB drive. 
      
 
 ## Deployment Methods 
